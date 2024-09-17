@@ -1,6 +1,6 @@
 import React from "react";
-import { checkOtp } from "../../services/auth";
-import setCookie from "../../utils/cookie";
+import { checkOtp } from "services/auth";
+import { setCookie } from "utils/cookie";
 
 function CheckOtpForm({ mobile, setStep, code, setCode }) {
   const submitHandler = async (event) => {

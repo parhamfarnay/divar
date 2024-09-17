@@ -1,5 +1,5 @@
 import React from "react";
-import { sendOtp } from "../../services/auth";
+import { sendOtp } from "services/auth";
 
 function SendOtpForm({ mobile, setMobile, setStep }) {
   const submitHandler = async (event) => {
