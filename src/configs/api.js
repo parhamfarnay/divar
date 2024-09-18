@@ -14,8 +14,8 @@ api.interceptors.request.use(
     const accessToken = getCookie("accessToken");
     if (accessToken) {
       request.headers["Authorization"] = `bearer ${accessToken}`;
-      return request;
     }
+    return request;
   },
   (error) => {
     return Promise.reject(error);
@@ -27,13 +27,17 @@ api.interceptors.response.use(
     return response;
   },
   async (error) => {
-    const originalRequest = error.config;
-    if (error.response.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
+    const orginialRequest = error.config;
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      !orginialRequest._retry
+    ) {
+      orginialRequest._retry = true;
       const res = await getNewTokens();
       if (!res?.response) return;
       setCookie(res.response.data);
-      return api(originalRequest);
+      return api(orginialRequest);
     }
   }
 );
