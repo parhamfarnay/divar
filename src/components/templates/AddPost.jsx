@@ -32,7 +32,7 @@ export default function AddPost() {
     axios
       .post(`${import.meta.env.VITE_BASE_URL}post/create`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
-        Authorization: "Bearer ${token}",
+        Authorization: `Bearer ${token}`,
       })
       .then((res) => toast.success(res.data.message))
       .then((error) => toast.error("مشکلی پیش آمده است"));
